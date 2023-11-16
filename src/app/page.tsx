@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
     const [timeLeft, setTimeLeft] = useState(60); // 60 seconds
     const [isActive, setIsActive] = useState(false);
     const [inputTime, setInputTime] = useState(60); // Input field for setting time
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     const startTimer = () => {
         setTimeLeft(inputTime);
@@ -14,12 +15,9 @@ export default function Home() {
 
     const stopTimer = () => {
         setIsActive(false);
-        const audio = document.getElementById(
-            "timer-sound"
-        ) as HTMLAudioElement;
-        if (audio) {
-            audio.pause();
-            audio.currentTime = 0;
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
         }
     };
 
@@ -36,10 +34,7 @@ export default function Home() {
                 setTimeLeft((timeLeft) => timeLeft - 1);
             }, 1000);
         } else if (timeLeft === 0) {
-            const audio = document.getElementById(
-                "timer-sound"
-            ) as HTMLAudioElement;
-            audio && audio.play();
+            audioRef.current && audioRef.current.play();
             setIsActive(false);
         }
 
@@ -71,7 +66,12 @@ export default function Home() {
             <button className={styles.button} onClick={resetTimer}>
                 Reset
             </button>
-            <audio id="timer-sound" src="/alarm.mp3" preload="auto"></audio>
+            <audio
+                ref={audioRef}
+                id="timer-sound"
+                src="/alarm.mp3"
+                preload="auto"
+            ></audio>
         </main>
     );
 }
