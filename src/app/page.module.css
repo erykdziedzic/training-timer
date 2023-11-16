@@ -6,3 +6,60 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.button {
+  background-color: #007bff;
+  color: white;
+  min-width: 100px;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.timeLeft {
+  margin: 16px 0;
+}
+
+.timeInput {
+  padding: 10px 15px;
+  border: 2px solid #00aaff;
+  border-radius: 5px;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #fff;
+  background-color: #222;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.timeInput:focus {
+  border-color: #29b6f6;
+  box-shadow: 0 0 10px rgba(41, 182, 246, 0.8);
+}
+
+/* ::placeholder {
+  color: #bbb;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #bbb;
+}
+
+::-ms-input-placeholder {
+  color: #bbb;
+} */
